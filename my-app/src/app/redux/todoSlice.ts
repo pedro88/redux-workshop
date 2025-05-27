@@ -7,8 +7,8 @@ interface TodoState {
   selectedTodo: TodoType | null
   displayAddTodoModal: boolean
   displayEditTodoModal: {
-    id: number,
-    display : boolean
+    id: number
+    display: boolean
   }
 }
 
@@ -38,8 +38,8 @@ const initialState: TodoState = {
   displayAddTodoModal: false,
   displayEditTodoModal: {
     id: 0,
-    display : false
-  }
+    display: false,
+  },
 }
 
 const todoSlice = createSlice({
@@ -53,18 +53,13 @@ const todoSlice = createSlice({
     selectTodo: (state, action: PayloadAction<TodoType>) => {
       state.selectedTodo = action.payload
     },
-    addTodo: (state, action: PayloadAction<TodoType>) => {
-      state.todos.push(action.payload)
-    },
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos.filter(todo => todo.id !== action.payload)
     },
-    //editTodoName
-    //editTodoStatus
-    //editTodoPriority
-    displayAddTodo: (state, action: PayloadAction<boolean>) => {
-      state.displayAddTodoModal = action.payload
-    },
+    //editTodo
+    //addTodo
+    //clearSelectedTodo
+    //displayAddTodo
     displayEditTodo: (
       state,
       action: PayloadAction<{ id: number; display: boolean }>,
@@ -75,11 +70,5 @@ const todoSlice = createSlice({
 })
 
 // >>>>>>>> Il faut bien penser à exporter ses reducer, sans quoi ils ne serviront à rien
-export const {
-  addTodo,
-  deleteTodo,
-  selectTodo,
-  displayAddTodo,
-  displayEditTodo
-} = todoSlice.actions
+export const { deleteTodo, selectTodo, displayEditTodo } = todoSlice.actions
 export default todoSlice.reducer

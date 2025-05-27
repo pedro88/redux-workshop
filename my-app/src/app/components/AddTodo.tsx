@@ -1,35 +1,38 @@
-
 import { useState } from "react"
 import { TodoType } from "../types"
-import { useDispatch } from "react-redux"
-import { displayAddTodo } from "../redux/todoSlice"
+import { RootState, useSelector } from "../redux/store"
 
 const AddTodo = () => {
   //Local Variables
   const [newTodo, setNewTodo] = useState<TodoType>({
-    id: 0,
+    id: Math.random() * Math.random(),
     todo: "",
     status: "backlog",
     priority: 1,
   })
-    
-    //Hooks
-    const dispatch = useDispatch()
+
+  //Selectors
+  const displayAddModal = useSelector(
+    (state: RootState) => state.todo.displayAddTodoModal,
+  )
+
+  //Hooks
 
   //Handlers
-    const handleSubmit = () => {
-      //Le submit doit d'une part ajouter un nouveau todo, et d'autre part fermer la modal.
-      //Vérifie bien que dans ton Slice tu as un reducer qui permet de créer un todo
-      
-      //Debug
-      //console.log(newTodo)
-    }
+  const handleSubmit = () => {
+    //Le submit doit d'une part ajouter un nouveau todo, et d'autre part fermer la modal.
+    //Vérifie bien que dans ton Slice tu as un reducer qui permet de créer un todo
+    //Debug
+    //console.log(newTodo)
+  }
+
+  if (!displayAddModal) return null
 
   return (
     <section className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md">
       <section className=" bg-amber-50 rounded-xl border-2 w-[33vw]">
         <div className="m-2 p-2 flex flex-col">
-        <h1 className="text-4xl">Add Todo</h1>
+          <h1 className="text-4xl">Add Todo</h1>
           <label htmlFor="todoName">todo :</label>
           <input
             className="border-1 rounded-md"
@@ -79,7 +82,7 @@ const AddTodo = () => {
               className="flex hover:scale-105 items-center justify-center w-20 bg-amber-200 border-1 m-5"
               // On utilise dispatch pour agir directement sur le store par le biai des reducers que nous avons défini dans notre Slice
               // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieu le travail
-              onClick={() => dispatch(displayAddTodo(false))}
+              onClick={() => console.log("what could we do???")}
             >
               Back
             </button>
