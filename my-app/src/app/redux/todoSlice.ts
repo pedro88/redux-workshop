@@ -4,6 +4,11 @@ import { TodoType } from "../types"
 interface TodoState {
   todos: TodoType[]
   selectedTodo: TodoType | null
+  displayAddTodoModal: boolean
+  displayEditTodoModal: {
+    id: number,
+    display : boolean
+  }
 }
 
 const initialState: TodoState = {
@@ -17,7 +22,7 @@ const initialState: TodoState = {
     {
       id: 2,
       todo: "tester mon workshop",
-      status: "backload",
+      status: "backlog",
       priority: 2,
     },
     {
@@ -28,22 +33,43 @@ const initialState: TodoState = {
     },
   ],
   selectedTodo: null,
+  displayAddTodoModal: false,
+  displayEditTodoModal: {
+    id: 0,
+    display : false
+  }
 }
 
 const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
+    selectTodo: (state, action: PayloadAction<TodoType>) => {
+      state.selectedTodo = action.payload
+    },
     addTodo: (state, action: PayloadAction<TodoType>) => {
       state.todos.push(action.payload)
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos.filter(todo => todo.id !== action.payload)
     },
-    selectTodo: (state, action: PayloadAction<TodoType>) => {
-      state.selectedTodo = action.payload
+    //editTodoName
+    //editTodoStatus
+    //editTodoPriority
+    displayAddTodo: (state, action: PayloadAction<boolean>) => {
+      state.displayAddTodoModal = action.payload
+    },
+    displayEditTodo: (state, action: PayloadAction<{ id: number, display: boolean }>) => {
+      state.displayEditTodoModal = action.payload
     },
   },
 })
 
+export const {
+  addTodo,
+  deleteTodo,
+  selectTodo,
+  displayAddTodo,
+  displayEditTodo
+} = todoSlice.actions
 export default todoSlice.reducer
