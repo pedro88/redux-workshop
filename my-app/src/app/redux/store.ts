@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import type { Action } from "@reduxjs/toolkit";
 import {
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,

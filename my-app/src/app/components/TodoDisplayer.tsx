@@ -32,11 +32,10 @@ const TodoDisplayer = () => {
         ))}
 
         <button
-          className="w-10 hover:scale-105 h-10 border-2 bg-fuchsia-200"
+          className="px-5 py-1 hover:scale-105 border-2 bg-fuchsia-200"
           onClick={() => dispatch(displayAddTodo(true))}
         >
-          {" "}
-          +{" "}
+Add Todo
         </button>
       </section>
 

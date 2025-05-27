@@ -9,10 +9,16 @@ const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
 
   return (
     <section
-      className={`border-1 p-2 hover:scale-105 w-[50vw] rounded-2xl ${todo.priority === 1 ? "bg-emerald-200" : todo.priority === 2 ? "bg-amber-200" : todo.priority === 3 ? "bg-red-300" : "bg-blue-200"}`}
-      onClick={() => {
-        // On utilise dispatch pour agir directement sur le store par le biai des reducers que nous avons défini dans notre Slice
-        // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieu le travail
+      className={`border-1 flex justify-between p-2 hover:scale-105 w-[50vw] rounded-2xl ${todo.priority === 1 ? "bg-emerald-200" : todo.priority === 2 ? "bg-amber-200" : todo.priority === 3 ? "bg-red-300" : "bg-blue-200"}`}
+
+    >
+      <div className="flex flex-col">
+        <h2 className="text-2xl">{todo.todo}</h2>
+        <h3 className='"text-xl'>{todo.status}</h3>
+      </div>
+      <div className="flex justify-end items-end">
+        <button className="flex hover:scale-105 items-center justify-center w-20 bg-amber-100 border-1 m-5"
+              onClick={() => {
         dispatch(selectTodo(todo))
         dispatch(
           displayEditTodo({
@@ -20,10 +26,13 @@ const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
             display: true,
           }),
         )
-      }}
-    >
-      <h2 className="text-2xl">{todo.todo}</h2>
-      <h3 className='"text-xl'>{todo.status}</h3>
+      }}>
+          Edit
+        </button>
+        <button className="flex hover:scale-105 items-center justify-center w-20 bg-amber-100 border-1 m-5">
+          Delete
+        </button>
+      </div>
     </section>
   )
 }
