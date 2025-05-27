@@ -1,14 +1,47 @@
-# Redux Workshop
+# 🛠 Redux Workshop - Todo App
 
-## Overview
-Hey, Welcome to my small Redux Workshop!
+## 📋 Introduction
+Bienvenue dans ce workshop Redux ! Vous allez compléter une application de gestion de tâches (Todo) en implémentant les fonctionnalités manquantes avec Redux Toolkit.
 
-I start to build a Todo App but unfortunatly I can't achieve it, so you will have to finish my app.
+## 🎯 Objectifs
+- Comprendre l'architecture Redux
+- Implémenter des reducers et actions
+- Gérer l'état global d'une application React
 
-Before you start here are some of the functionnality allready implemented and other wich are not : 
-* Redux store >> The store is already setup, you should not need to modify this file
-* todoSlice.ts >> Unfortunatly I didn't achieve to work on this file, as you will see there is already some functionnal reducers, but some are just commented as reminder to build them, **it will be your first mission!** Luckily you can use the ones I build as exemple
-* TodoDisplayer.tsx >> This component works well, I recommand you to use the ReduxDevTool in your browser to visualize what happend when you select a Todo
-* Todo.tsx >> This component works well but it will be amazing if you can add a button to delete the Todo, **this will be your second mission!**
-* AddTodo.tsx >> I build all the component but you have to finish the handleSubmit function to update the store by adding a new todo and close the modal. **It will be your third mission !**
-* EditTodo.tsx >> Well actually pretty much the same than the previous one, but check the Payload format to avoid error ! **It will be your last mission !**
+## 🔧 Fonctionnalités à implémenter
+
+### 1. **todoSlice.tsx** *(À compléter)*
+- `addTodo` : Ajouter une nouvelle tâche
+- `editTodo` : Modifier une tâche existante
+- `clearSelectedTodo` : Réinitialiser la sélection
+- `displayAddTodo` : Gérer la visibilité de la modale
+
+### 2. **TodoDisplayer.tsx**
+- Implémenter `handleAddClick` pour ouvrir la modale d'ajout
+
+### 3. **AddTodo.tsx**
+- Gérer la soumission du formulaire :
+  - Ajouter la nouvelle tâche au store
+  - Fermer la modale après soumission
+
+### 4. **Todo.tsx** *(Composant individuel)*
+- Implémenter :
+  - La soumission des modifications
+  - La fermeture de la modale
+  - La suppression d'une tâche
+
+## 📚 Ressources utiles
+- [Documentation Redux Toolkit](https://redux-toolkit.js.org/)
+- [Guide Redux Essentials](https://redux.js.org/tutorials/essentials/part-1-overview-concepts)
+- [API React-Redux Hooks](https://react-redux.js.org/api/hooks)
+
+## 💡 Conseils
+1. Inspirez-vous du code existant pour comprendre la structure
+2. Commencez par les reducers avant de passer aux composants
+3. Utilisez les Redux DevTools pour debugger
+
+## 🚀 Bonus
+- Persistance avec `localStorage`
+- Système de filtrage (par statut/priorité)
+- Animations entre les états
+
