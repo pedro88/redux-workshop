@@ -1,11 +1,22 @@
 import React from "react"
 import type { TodoType } from "../types"
 import { useDispatch } from "react-redux"
-import { displayEditTodo, selectTodo } from "../redux/todoSlice"
+import { deleteTodo, displayEditTodo, selectTodo } from "../redux/todoSlice"
 
 const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
   //hook  -- useDispatch est un custom hook de Redux qui permet d'agir sur le store. Sans useDispatch, impossible de changer l'état de ton App
   const dispatch = useDispatch()
+
+  //Handlers
+  const handleEditClick = () => {
+      dispatch(selectTodo(todo))
+      dispatch(
+        displayEditTodo({
+          id: todo.id,
+          display: true,
+        }),
+      )
+  }
 
   return (
     <section
@@ -16,20 +27,18 @@ const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
         <h2 className="text-2xl">{todo.todo}</h2>
         <h3 className='"text-xl'>{todo.status}</h3>
       </div>
+
+
       <div className="flex justify-end items-end">
+        
         <button className="flex hover:scale-105 items-center justify-center w-20 bg-amber-100 border-1 m-5"
-              onClick={() => {
-        dispatch(selectTodo(todo))
-        dispatch(
-          displayEditTodo({
-            id: todo.id,
-            display: true,
-          }),
-        )
-      }}>
+              onClick={handleEditClick}>
           Edit
         </button>
-        <button className="flex hover:scale-105 items-center justify-center w-20 bg-amber-100 border-1 m-5">
+
+
+        <button className="flex hover:scale-105 items-center justify-center w-20 bg-amber-100 border-1 m-5"
+        onClick={() => {dispatch(deleteTodo(todo.id))}}>
           Delete
         </button>
       </div>

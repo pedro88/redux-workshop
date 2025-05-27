@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../redux/store"
 import Todo from "./Todo"
@@ -13,11 +12,10 @@ const TodoDisplayer = () => {
 
   //Selector -- Les sélectors permettet de "pointer" une partie du store que l'on veut connaitre
   const todos = useSelector((state: RootState) => state.todo.todos)
-  const displayAddModal = useSelector((state: RootState) => state.todo.displayAddTodoModal)
-  const displayEditModal = useSelector(
-    (state: RootState) => state.todo.displayEditTodoModal,
+
+  const selectedTodo = useSelector(
+    (state: RootState) => state.todo.selectedTodo,
   )
-  const selectedTodo = useSelector((state: RootState) => state.todo.selectedTodo)
 
   //Debug
   //console.log(todos)
@@ -35,17 +33,13 @@ const TodoDisplayer = () => {
           className="px-5 py-1 hover:scale-105 border-2 bg-fuchsia-200"
           onClick={() => dispatch(displayAddTodo(true))}
         >
-Add Todo
+          Add Todo
         </button>
       </section>
 
-      <div style={{ display: displayAddModal ? "block" : "none" }}>
+      
         <AddTodo />
-      </div>
-
-      <div style={{ display: displayEditModal ? "block" : "none" }}>
-        {selectedTodo && <EditTodo todo={selectedTodo} />}
-      </div>
+      {selectedTodo && <EditTodo />}
     </>
   )
 }

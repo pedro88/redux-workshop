@@ -47,21 +47,33 @@ const todoSlice = createSlice({
   name: "todo",
   initialState,
   reducers: {
+    
     // Un reducer est toujours défini de la même manière :
     // sonNom : (sonEtatAUnInstantT, sonAction : éventuellementAvecUnPayload) => {
     // laLogiqueDuReducerQuiAgitSurUnePartiePréciseDeLEtat}
+
     selectTodo: (state, action: PayloadAction<TodoType>) => {
       state.selectedTodo = action.payload
+    },
+    clearSelectedTodo: state => {
+      state.selectedTodo = null
     },
     addTodo: (state, action: PayloadAction<TodoType>) => {
       state.todos.push(action.payload)
     },
     deleteTodo: (state, action: PayloadAction<number>) => {
-      state.todos.filter(todo => todo.id !== action.payload)
+      state.todos = state.todos.filter(todo => todo.id !== action.payload)
     },
-    //editTodoName
-    //editTodoStatus
-    //editTodoPriority
+    editTodo: (state, action: PayloadAction<TodoType>) => {
+      if (state.selectedTodo !== null) {
+        state.selectedTodo = action.payload
+        state.todos = state.todos.map(todo =>
+          todo.id === state.selectedTodo!.id
+            ? { ...todo, ...action.payload }
+            : todo,
+        )
+      }
+    },
     displayAddTodo: (state, action: PayloadAction<boolean>) => {
       state.displayAddTodoModal = action.payload
     },
@@ -79,7 +91,9 @@ export const {
   addTodo,
   deleteTodo,
   selectTodo,
+  clearSelectedTodo,
   displayAddTodo,
-  displayEditTodo
+  displayEditTodo, 
+  editTodo
 } = todoSlice.actions
 export default todoSlice.reducer
