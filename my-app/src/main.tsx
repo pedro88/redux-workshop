@@ -12,6 +12,7 @@ if (container) {
 
   root.render(
     <StrictMode>
+      {/* On wrap toute notre application dans le Provider, c'est ca qui permet d'avoir accés au store partout dans notre App */}
       <Provider store={store}>
         <App />
       </Provider>

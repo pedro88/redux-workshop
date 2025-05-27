@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { TodoType } from "../types"
 
+// >>>>>>>> On commence par typer l'état initial du Slice
 interface TodoState {
   todos: TodoType[]
   selectedTodo: TodoType | null
@@ -11,6 +12,7 @@ interface TodoState {
   }
 }
 
+// >>>>>>>> Puis on défini l'état initial du Slice
 const initialState: TodoState = {
   todos: [
     {
@@ -41,9 +43,13 @@ const initialState: TodoState = {
 }
 
 const todoSlice = createSlice({
+  // >>>>>>>> Ensuite on créer le Slice en tant que tel, on doit définir son nom, son état initial, et enfin les reucer qui vont permettre d'agir sur l'état initial
   name: "todo",
   initialState,
   reducers: {
+    // Un reducer est toujours défini de la même manière :
+    // sonNom : (sonEtatAUnInstantT, sonAction : éventuellementAvecUnPayload) => {
+    // laLogiqueDuReducerQuiAgitSurUnePartiePréciseDeLEtat}
     selectTodo: (state, action: PayloadAction<TodoType>) => {
       state.selectedTodo = action.payload
     },
@@ -59,12 +65,16 @@ const todoSlice = createSlice({
     displayAddTodo: (state, action: PayloadAction<boolean>) => {
       state.displayAddTodoModal = action.payload
     },
-    displayEditTodo: (state, action: PayloadAction<{ id: number, display: boolean }>) => {
+    displayEditTodo: (
+      state,
+      action: PayloadAction<{ id: number; display: boolean }>,
+    ) => {
       state.displayEditTodoModal = action.payload
     },
   },
 })
 
+// >>>>>>>> Il faut bien penser à exporter ses reducer, sans quoi ils ne serviront à rien
 export const {
   addTodo,
   deleteTodo,

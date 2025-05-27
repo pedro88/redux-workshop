@@ -75,6 +75,8 @@ const AddTodo = () => {
         <div className="flex items-center justify-center">
           <button
             className="flex hover:scale-105 items-center justify-center w-20 bg-amber-200 border-1 m-5"
+            // On utilise dispatch pour agir directement sur le store par le biai des reducers que nous avons défini dans notre Slice
+            // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieu le travail
             onClick={() => dispatch(displayAddTodo(false))}
           >
             Back

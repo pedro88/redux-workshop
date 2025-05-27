@@ -4,19 +4,22 @@ import { useDispatch } from "react-redux"
 import { displayEditTodo, selectTodo } from "../redux/todoSlice"
 
 const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
-  //hook
+  //hook  -- useDispatch est un custom hook de Redux qui permet d'agir sur le store. Sans useDispatch, impossible de changer l'état de ton App
   const dispatch = useDispatch()
 
   return (
     <section
       className={`border-1 p-2 hover:scale-105 w-[50vw] rounded-2xl ${todo.priority === 1 ? "bg-emerald-200" : todo.priority === 2 ? "bg-amber-200" : todo.priority === 3 ? "bg-red-300" : "bg-blue-200"}`}
-      //THIS IS THE IMPORTANT PART HERE -- YOU CAN'T MUTATE ANYTHING IN REDUX WITHOUT DISPATCH
       onClick={() => {
+        // On utilise dispatch pour agir directement sur le store par le biai des reducers que nous avons défini dans notre Slice
+        // En fait le Slice est un "morceau" du store, il permet de découper le store en plusieurs petits bout pour organiser au mieu le travail
         dispatch(selectTodo(todo))
-        dispatch(displayEditTodo({
-          id: todo.id,
-          display : true
-        }))
+        dispatch(
+          displayEditTodo({
+            id: todo.id,
+            display: true,
+          }),
+        )
       }}
     >
       <h2 className="text-2xl">{todo.todo}</h2>

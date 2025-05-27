@@ -8,10 +8,10 @@ import { displayAddTodo } from "../redux/todoSlice"
 import EditTodo from "./EditTodo"
 
 const TodoDisplayer = () => {
-  //Hooks
+  //Hooks -- useDispatch est un custom hook de Redux qui permet d'agir sur le store. Sans useDispatch, impossible de changer l'état de ton App
   const dispatch = useDispatch()
 
-  //Selector -- THIS IS USED TO SELECT SOMETHING ON YOUR STORE
+  //Selector -- Les sélectors permettet de "pointer" une partie du store que l'on veut connaitre
   const todos = useSelector((state: RootState) => state.todo.todos)
   const displayAddModal = useSelector((state: RootState) => state.todo.displayAddTodoModal)
   const displayEditModal = useSelector(
