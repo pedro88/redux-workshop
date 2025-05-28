@@ -7,16 +7,16 @@ import { RootState, useSelector } from "../redux/store"
 const AddTodo = () => {
   //Local Variables
   const [newTodo, setNewTodo] = useState<TodoType>({
-    id: Math.random()*Math.random(),
+    id: Math.random() * Math.random(),
     todo: "",
     status: "backlog",
     priority: 1,
   })
-    
-    //Selectors 
-    const displayAddModal = useSelector(
-      (state: RootState) => state.todo.displayAddTodoModal,
-    )
+
+  //Selectors
+  const displayAddModal = useSelector(
+    (state: RootState) => state.todo.displayAddTodoModal,
+  )
 
   //Hooks
   const dispatch = useDispatch()
@@ -26,19 +26,16 @@ const AddTodo = () => {
     //Le submit doit d'une part ajouter un nouveau todo, et d'autre part fermer la modal.
     //Vérifie bien que dans ton Slice tu as un reducer qui permet de créer un todo
     //Debug
-      //console.log(newTodo)
-      
-      dispatch(addTodo(newTodo))
-      dispatch(displayAddTodo(false))
+    //console.log(newTodo)
 
+    dispatch(addTodo(newTodo))
+    dispatch(displayAddTodo(false))
   }
 
   if (!displayAddModal) return null
-    
+
   return (
-    <section
-      className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md"
-    >
+    <section className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md">
       <section className=" bg-amber-50 rounded-xl border-2 w-[33vw]">
         <div className="m-2 p-2 flex flex-col">
           <h1 className="text-4xl">Add Todo</h1>

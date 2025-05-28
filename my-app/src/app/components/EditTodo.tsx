@@ -20,7 +20,7 @@ const EditTodo = () => {
       priority: selectedTodo!.priority,
     })
 
-    //hooks
+    //Hooks
     const dispatch = useDispatch()
 
     //Handlers

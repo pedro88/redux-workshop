@@ -12,7 +12,6 @@ const TodoDisplayer = () => {
 
   //Selector -- Les sélectors permettet de "pointer" une partie du store que l'on veut connaitre
   const todos = useSelector((state: RootState) => state.todo.todos)
-
   const selectedTodo = useSelector(
     (state: RootState) => state.todo.selectedTodo,
   )
@@ -23,6 +22,7 @@ const TodoDisplayer = () => {
   return (
     <>
       <section className="flex flex-col justify-between w-[50vw] items-center m-auto">
+        <h1 className="text-4xl">My super Redux Todo app</h1>
         {todos.map((todo: TodoType) => (
           <div key={todo.id} className="my-2">
             <Todo todo={todo}></Todo>
