@@ -1,16 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import type { Action } from "@reduxjs/toolkit";
 import {
   useDispatch as useReduxDispatch,
   useSelector as useReduxSelector,
 } from "react-redux"
-import todoReducer from '../redux/todoSlice'
+import sliceReducer from '../redux/slice'
 import { TypedUseSelectorHook } from "react-redux";
 
 
 export const store = configureStore({
   reducer: {
-    todo: todoReducer
+    sliceReducer
   }
 })
 
