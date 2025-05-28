@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import {displayEditTodo, selectTodo } from "../redux/todoSlice"
 
 const Todo: React.FC<{ todo: TodoType }> = ({ todo }) => {
-  //hook  -- useDispatch est un custom hook de Redux qui permet d'agir sur le store. Sans useDispatch, impossible de changer l'état de ton App
+  //hooks  -- useDispatch est un custom hook de Redux qui permet d'agir sur le store. Sans useDispatch, impossible de changer l'état de ton App
   const dispatch = useDispatch()
 
   //Handlers

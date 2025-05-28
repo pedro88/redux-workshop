@@ -19,7 +19,7 @@ const EditTodo = () => {
     priority: selectedTodo!.priority,
   })
 
-  //hooks
+  //Hooks
 
   //Handlers
     const handleClose = () => { }
